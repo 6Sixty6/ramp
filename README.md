@@ -1,6 +1,6 @@
 <h1 align="center">
     <img src="https://user-images.githubusercontent.com/86065741/155012868-6ca9b274-87f2-4c57-b4d8-7860e41a64e3.png" width="200px"><br>
-    RAMP - port scanner
+    RAMP - port scanner 🦀
 </h1>
 
 <p align="center">
