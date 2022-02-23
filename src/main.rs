@@ -12,7 +12,6 @@ use std::{
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
-    println!("{}", BANNER); // Banner
 
     // Setting up arguments
     let param = App::new(clap::crate_name!())
@@ -51,16 +50,17 @@ async fn main() -> Result<(), anyhow::Error> {
                 .default_value("3"),
         )
         .arg(
-            Arg::with_name("output")
-                .help("Output to a file")
-                .long("output")
-                .short("o"),
+            Arg::with_name("banner")
+                .help("show banner")
+                .long("banner")
+                .short("b"),
         )
         .setting(clap::AppSettings::ArgRequiredElseHelp)
         .setting(clap::AppSettings::VersionlessSubcommands)
         .get_matches();
 
     // Parsing out arguments
+    let banner = param.is_present("banner");
     let full = param.is_present("full");
     let verbose = param.is_present("verbose");
     let concurrency = param
@@ -74,6 +74,10 @@ async fn main() -> Result<(), anyhow::Error> {
         .parse::<u64>()
         .unwrap_or(3);
     let target = param.value_of("target").unwrap();
+
+    if banner {
+        println!("{}", BANNER); // Banner
+    }
 
     // Checks for verbose
     if verbose {
